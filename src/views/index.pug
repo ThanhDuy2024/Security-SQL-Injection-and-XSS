@@ -1,6 +1,7 @@
 extends layouts/main
 
 block content
+  h2 Search: !{search}
   div.product
     each product in products
       include components/product

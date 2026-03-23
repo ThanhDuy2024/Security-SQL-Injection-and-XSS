@@ -1,0 +1,28 @@
+extends layouts/main
+
+block content
+  .profile-container
+    .profile-card
+      .profile-header
+        img.avatar(src="/images/avatar.png")
+        h2.username #{user.username}
+        p.email #{user.email}
+
+      .profile-body
+        .info-group
+          label Full name
+          input(type="text" value=user.username readonly)
+
+        .info-group
+          label Phone
+          input(type="text" value=user.phone readonly)
+
+        .info-group
+          label Address
+          input(type="text" value=user.address readonly)
+
+      .profile-footer
+        a.btn-edit(href="/profile/edit") Edit Profile
+
+        form(action="/logout" method="GET")
+          button.btn-logout(type="submit") Logout

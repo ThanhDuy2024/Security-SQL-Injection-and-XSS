@@ -10,9 +10,9 @@ html
         div.header_left
           a(href="/").logo My E-commerce
           .search 
-            form(action="")
+            form(action="/" method="GET")
               div
-                input(type="text" placeholder="Search")
+                input(type="text" name="search" placeholder="Search")
 
           
         div.header_middle
@@ -25,7 +25,7 @@ html
         .menu
           .button 
             .btn 
-              a(href="/login") Cart
+              a(href="/cart") Cart
           if !user
             .button
               .btn
@@ -35,7 +35,7 @@ html
           else
             .button
               .btn
-                a(href="/profile").btn Profile
+                a(href="/profile") Profile
               .btn
-                a(href="/logout").btn Logout
+                a(href="/logout") Logout
       block content

@@ -214,3 +214,48 @@ export const loginSQLwebApi = async (req, res) => {
 
     }
 };
+
+export const logout = async (req, res) => {
+    res.clearCookie('usersToken');
+    res.redirect('/');
+}
+
+export const profileSQLweb = async (req, res) => {
+    const { id } = req.client;
+
+    const query = `SELECT id, username, email, phone, address, created_At, updated_At FROM users WHERE id = ${id}`
+    const [rows] = await db.query(query);
+    const data = rows[0]
+    res.render('profile', {
+        user: data
+    })
+}
+
+export const profileUpdateSQLweb = async (req, res) => {
+    const { id } = req.client;
+
+    const query = `SELECT id, username, email, phone, address, created_At, updated_At FROM users WHERE id = ${id}`
+    const [rows] = await db.query(query);
+    const data = rows[0]
+    res.render("profile-edit", {
+        user: data
+    });
+}
+
+export const profileUpdateSQLwebEX = async (req, res) => {
+    const { id } = req.client;
+    const { username, email, address, phone } = req.body;
+    const queryCheck = `SELECT * FROM users WHERE email = '${email}' AND id != ${id}`;
+    const [rows] = await db.query(queryCheck);
+    if (rows[0]) {
+        return res.status(400).json({
+            code: "error",
+            message: "Your email is existed!"
+        })
+    };
+
+    const query = `UPDATE users SET username = '${username}', email = '${email}', address = '${address}', phone = ${phone} WHERE id = ${id}`
+    await db.query(query);
+
+    res.redirect('/profile');
+}

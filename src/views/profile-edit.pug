@@ -1,0 +1,30 @@
+extends layouts/main
+
+block content
+  .profile-container
+    .profile-card
+      .profile-header
+        img.avatar(src="/images/avatar.png")
+        h2.username #{user.username}
+        p.email #{user.email}
+
+      form(action="/profile/edit" method="POST")
+        .profile-body
+          .info-group
+            label Full name
+            input(type="text" name="username" value=user.username)
+
+          .info-group
+            label Email
+            input(type="text" name="email" value=user.email)
+
+          .info-group
+            label Phone
+            input(type="text" name="phone" value=user.phone)
+
+          .info-group
+            label Address
+            input(type="text" name="address" value=user.address)
+
+        .profile-footer-edit
+          button.btn-profile(type="submit") Update Profile

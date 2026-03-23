@@ -75,6 +75,7 @@
 .header .menu .button {
     display: flex;
     align-items: center;
+    justify-content: center;
 }
 
 .header .menu .button .btn {
@@ -82,6 +83,10 @@
     margin-right: 10px;
     padding: 16px;
     border-radius: 10px;
+}
+
+.header .menu .button .btn:hover {
+    background-color: blue;
 }
 
 .header .menu .button .btn a {
@@ -144,4 +149,204 @@ a {
     border: none;
     border-radius: 10px;
     cursor: pointer;
+}
+
+.product .box .button .btn:hover {
+    background-color: blue;
+}
+
+/* Login */
+.login-container {
+    display: flex;
+    align-items: center;
+    height: auto;
+}
+
+.login-box {
+    background: white;
+    padding: 50px;
+    width: 500px;
+    border-radius: 10px;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+    text-align: center;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 100px;
+}
+
+.login-box h2 {
+    margin-bottom: 20px;
+}
+
+.form-group {
+    margin-bottom: 15px;
+    text-align: left;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 5px;
+    font-weight: bold;
+}
+
+.form-group input {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    outline: none;
+    transition: 0.3s;
+}
+
+.form-group input:focus {
+    border-color: #6c63ff;
+    box-shadow: 0 0 5px rgba(108, 99, 255, 0.5);
+}
+
+.btn {
+    width: 100%;
+    padding: 12px;
+    background: #6c63ff;
+    border: none;
+    color: white;
+    font-size: 16px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.btn:hover {
+    background: #574fd6;
+}
+
+.footer {
+    margin-top: 15px;
+}
+
+.footer a {
+    color: #6c63ff;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+.footer a:hover {
+    text-decoration: underline;
+}
+
+/* profile */
+.profile-container {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  margin-top: 50px;
+}
+
+.profile-card {
+  width: 450px;
+  background: white;
+  border-radius: 10px;
+  box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+  overflow: hidden;
+}
+
+.profile-header {
+  background-color: #0061f2;
+  color: white;
+  text-align: center;
+  padding: 30px 20px;
+}
+
+.avatar {
+  width: 120px;
+  height: 120px;
+  border-radius: 50%;
+  border: 4px solid white;
+  margin-bottom: 10px;
+}
+
+.username {
+  margin: 5px 0;
+}
+
+.email {
+  font-size: 16px;
+  opacity: 0.9;
+}
+
+.profile-body {
+  padding-left: 20px;
+  padding-right: 20px;
+  padding-top: 20px;
+  padding-bottom: 10px;
+}
+
+.info-group {
+  margin-bottom: 15px;
+}
+
+.info-group label {
+  display: block;
+  font-size: 16px;
+  color: #888;
+  margin-bottom: 5px;
+}
+
+.info-group input {
+  width: 100%;
+  padding: 8px;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  background: #f9f9f9;
+  height: 40px;
+}
+
+.profile-footer {
+  padding: 10px;
+  display: flex;
+  justify-content: space-between;
+}
+
+.btn-edit {
+  background: #2196F3;
+  color: white;
+  padding: 8px 15px;
+  border-radius: 5px;
+  text-decoration: none;
+}
+
+.btn-edit:hover {
+  background: #1976D2;
+}
+
+.btn-logout {
+  background: #f44336;
+  color: white;
+  border: none;
+  padding: 8px 15px;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.btn-logout:hover {
+  background: #d32f2f;
+}
+
+.profile-footer-edit {
+  padding-bottom: 10px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.btn-profile {
+  background-color: #0061f2;
+  color: white;
+  border: none;
+  padding: 8px 15px;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.btn-profile:hover {
+  background: blue;
 }

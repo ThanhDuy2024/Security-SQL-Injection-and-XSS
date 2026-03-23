@@ -46,13 +46,14 @@ export const webProduct = async (req, res) => {
             let query = `SELECT * FROM products`
 
             if (req.query.search) {
-                query += ` WHERE productName LIKE '%${req.query.search}%'`
+                query += ` WHERE productName LIKE '${req.query.search}'`
             }
             const [rows] = await db.query(query);
             res.render("index", {
                 name: "Duy",
                 products: rows,
-                user: token
+                user: token,
+                search: req.query.search
             })
         } else {
             let query = `SELECT * FROM products`
@@ -64,6 +65,7 @@ export const webProduct = async (req, res) => {
             res.render("index", {
                 name: "Duy",
                 products: rows,
+                search: req.query.search
             })
         }
     } catch (error) {
