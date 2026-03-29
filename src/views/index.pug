@@ -1,7 +1,33 @@
 extends layouts/main
 
 block content
-  h2.search Search: !{search}
+  .section-1 
+    .section-1_left 
+      .section-1_left_top 100% Organic Product
+      .section-1_left_title Buy Delicious produce Enjoy Free Shipping
+      .section-1_left_button Buy Now
+    .section-1_right
+      img(src="/images/hero.png", alt="")
+  h1.search Products
   div.product
     each product in products
       include components/product
+  .section-2
+    .section-2_left
+      .img-wrapper
+        img(src="/images/off-01.png")
+        .content
+          .title2 GET 30% OFF
+          .desc Fresh Vegetables
+          button.button3 Buy Now
+
+    .section-2_right
+      .img-wrapper
+        img(src="/images/off-02.png")
+        .content
+          .title2 Limited Offer
+          .desc2 Don't miss 25% off 
+          .desc2 on all fruits
+          button.button3 Buy Now
+  .section-3
+    .test this is section 3

@@ -69,7 +69,7 @@ export const webProduct = async (req, res) => {
     try {
         const token = req.cookies.usersToken;
         if (token) {
-            let query = `SELECT * FROM products`
+            let query = `SELECT * FROM products LIMIT 8 OFFSET 0`
 
             if (req.query.search) {
                 query += ` WHERE productName LIKE '${req.query.search}'`

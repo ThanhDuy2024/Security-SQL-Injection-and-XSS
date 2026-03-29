@@ -192,7 +192,6 @@ a {
     display: flex;
     flex-wrap: wrap;
     align-items: center;
-    justify-content: center;
     padding: 20px;
     gap: 20px;
     margin-left: auto;
@@ -229,6 +228,8 @@ a {
 
 .product .box .image img {
     background-size: contain;
+    width: 185px;
+    height: 185px;
 }
 
 .product .box .title {
@@ -246,7 +247,7 @@ a {
 
 .product .box .button .btn {
     padding: 10px;
-    background-color: #0061f2;
+    background-color: #80b501;
     color: white;
     border: none;
     border-radius: 10px;
@@ -254,7 +255,7 @@ a {
 }
 
 .product .box .button .btn:hover {
-    background-color: blue;
+    background-color: #4b6a04;
 }
 
 /* Login */
@@ -451,4 +452,103 @@ a {
 
 .btn-profile:hover {
     background: blue;
+}
+
+/* Section-1 */
+.section-1 {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: rgb(245, 245, 219);
+    padding: 30px;
+    border-radius: 10px;
+}
+
+.section-1_left_top {
+    padding: 4px 15px;
+    background-color: rgba(128, 181, 1, 0.1019607843);
+    display: inline;
+    font-size: 16px;
+    color: #555555;
+}
+
+.section-1_left_title {
+    margin-top: 20px;
+    font-size: 76px;
+    font-weight: 700;
+    margin-bottom: 40px;
+}
+
+.section-1_left_button {
+    background-color: #80b501;
+    padding: 20px 30px;
+    display: inline;
+    font-size: 16px;
+    border-radius: 10px;
+    color: white;
+    font-weight: 700;
+    cursor: pointer;
+}
+
+.section-2 {
+  display: flex;
+  gap: 20px;
+  padding: 20px;
+}
+
+.img-wrapper {
+  position: relative;
+  width: 100%;
+  height: 300px;
+  overflow: hidden;
+}
+
+.img-wrapper img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* chữ nằm trên hình */
+.content {
+  position: absolute;
+  top: 50%;
+  left: 40px;
+  transform: translateY(-50%);
+  color: white;
+}
+
+.title2 {
+  font-size: 16px;
+  font-weight: bold;
+  color: #80b501;
+  margin-bottom: 10px;
+}
+
+.desc {
+  font-size: 28px;
+  font-weight: 700;
+  color: black;
+}
+
+.desc2 {
+  font-size: 28px;
+  font-weight: 700;
+  color: white;
+}
+
+.button3 {
+    background-color: #80b501;
+    padding: 20px 30px;
+    font-size: 16px;
+    border-radius: 10px;
+    color: white;
+    font-weight: 700;
+    cursor: pointer;
+    border: none;
+    margin-top: 20px;
+}
+
+.section-3 {
+    padding: 100px 20px;
 }
