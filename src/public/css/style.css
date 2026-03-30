@@ -97,7 +97,7 @@
 }
 
 .header .header_middle .title:hover {
-    color: #0061f2;
+    color: #80b501;
 }
 
 @media (max-width: 1300px) {
@@ -140,7 +140,7 @@
 }
 
 .header .menu .button .btn {
-    background-color: #0061f2;
+    background-color: #80b501;
     margin-right: 10px;
     padding: 16px;
     border-radius: 10px;
@@ -162,7 +162,7 @@
 
 
 .header .menu .button .btn:hover {
-    background-color: blue;
+    background-color: #80b501;
 }
 
 .header .menu .button .btn a {
@@ -551,4 +551,106 @@ a {
 
 .section-3 {
     padding: 100px 20px;
+}
+
+.section-3_top {
+    margin-bottom: 40px;
+}
+
+.section-3_top_title {
+    margin-bottom: 10px;
+}
+
+.section-3_top_title_inline {
+    background: rgba(129, 184, 0, 0.15);
+    color: #80b501;
+    display: inline;
+    padding: 10px 15px;
+    font-size: 16x;
+    font-weight: 700;
+}
+
+.section-3_top_desc {
+    font-size: 45px;
+    margin-top: 10px;
+    font-weight: 700;
+}
+
+.section-3_bottom {
+    display: flex;
+    flex-wrap: wrap;
+    width: 100%;
+}
+
+.section-3_bottom_box {
+    width: 33.3%;
+    display: flex;
+    align-items: center;
+    gap: 30px;
+    margin-top: 15px;
+    padding: 0px 15px;
+}
+
+.section-3_bottom_box_image {
+    width: 170px;
+    height: 170px;
+    display: flex;
+    align-items: center;
+    background-color: rgb(249, 244, 244);
+}
+
+.section-3_bottom_box_image img {
+    max-width: 100%;
+    object-fit: cover;
+}
+
+.section-3_bottom_box_content_title {
+    font-size: 20px;
+    font-weight: 700;
+}
+
+.section-3_bottom_box_content_price {
+    font-size: 16px;
+    color: #80b501;
+    padding: 5px 0px;
+}
+
+.section-4 {
+    margin-bottom: 20px;
+}
+
+.section-4_bottom {
+    display: flex;
+    align-items: center;
+    gap: 30px;
+}
+
+.section-4_bottom_box {
+    width: 40%;
+    display: flex;
+    flex-direction: column;
+}
+
+.section-4_bottom_box_image {
+    padding: 80px 30px 40px;
+    max-width: 370px;
+    background: #f0f0f0;
+    display: flex;
+    align-items: center;
+    margin-bottom: 10px;
+}
+
+.section-4_bottom_box_image img {
+    width: 206px;
+    height: 206px;
+}
+
+.section-4_bottom_box_content_title {
+    font-size: 20px;
+    font-weight: 700;
+    margin-bottom: 5px;
+}
+
+.section-4_bottom_box_content_price {
+    color: #80b501;
 }

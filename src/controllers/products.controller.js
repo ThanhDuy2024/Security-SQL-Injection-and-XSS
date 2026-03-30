@@ -68,29 +68,38 @@ export const addProduct = async (req, res) => {
 export const webProduct = async (req, res) => {
     try {
         const token = req.cookies.usersToken;
+
         if (token) {
             let query = `SELECT * FROM products LIMIT 8 OFFSET 0`
-
+            let query2 = `SELECT * FROM products`
+            let query3 = `SELECT * FROM products LIMIT 4 OFFSET 4`
             if (req.query.search) {
                 query += ` WHERE productName LIKE '${req.query.search}'`
             }
             const [rows] = await db.query(query);
+            const [rows2] = await db.query(query2);
+            const [rows3] = await db.query(query3);
             res.render("index", {
-                name: "Duy",
                 products: rows,
-                user: token,
+                products2: rows2,
+                products3: rows3,
+                user: req.cookies.usersToken,
                 search: req.query.search
             })
         } else {
-            let query = `SELECT * FROM products`
-
+            let query = `SELECT * FROM products LIMIT 8 OFFSET 0`
+            let query2 = `SELECT * FROM products`
+            let query3 = `SELECT * FROM products LIMIT 4 OFFSET 4`
             if (req.query.search) {
-                query += ` WHERE productName LIKE '%${req.query.search}%'`
+                query += ` WHERE productName LIKE '${req.query.search}'`
             }
             const [rows] = await db.query(query);
+            const [rows2] = await db.query(query2);
+            const [rows3] = await db.query(query3);
             res.render("index", {
-                name: "Duy",
                 products: rows,
+                products2: rows2,
+                products3: rows3,
                 search: req.query.search
             })
         }

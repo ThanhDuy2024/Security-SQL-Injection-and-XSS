@@ -30,4 +30,29 @@ block content
           .desc2 on all fruits
           button.button3 Buy Now
   .section-3
-    .test this is section 3
+    .section-3_top 
+      .section-3_top_title 
+        p.section-3_top_title_inline THIS WEEK
+      .section-3_top_desc Best Sellers
+    .section-3_bottom
+      each product in products2
+        .section-3_bottom_box 
+          .section-3_bottom_box_image 
+            img(src=`${product.image}`, alt="", srcset="")
+          .section-3_bottom_box_content
+            .section-3_bottom_box_content_title #{product.productName}
+            .section-3_bottom_box_content_price USD #{product.price}
+
+  .section-4
+    .section-3_top 
+      .section-3_top_title 
+        p.section-3_top_title_inline TOP SALES
+      .section-3_top_desc Featured Product
+    .section-4_bottom
+      each product in products3
+        .section-4_bottom_box 
+          .section-4_bottom_box_image 
+            img(src=`${product.image}`, alt="", srcset="")
+          .section-4_bottom_box_content 
+            .section-4_bottom_box_content_title #{product.productName}
+            .section-4_bottom_box_content_price USD #{product.price}
