@@ -1,5 +1,7 @@
 import { db } from "../configs/database.config.js";
 import jwt from "jsonwebtoken";
+import { Users } from "../models/Users.model.js";
+import bcrypt from "bcryptjs";
 export const register = async (req, res) => {
     try {
         const queryCheck = `SELECT * FROM users WHERE email = '${req.body.email}'`
@@ -163,31 +165,135 @@ export const changePassword = async (req, res) => {
 }
 
 //func web
+
+// Register
+export const registerPage = async (req, res) => {
+    res.render("register")
+}
+
+export const registerApi = async (req, res) => {
+    try {
+        const account = await Users.findOne({
+            where: {
+                email: req.body.email,
+            }
+        });
+
+        if (account) {
+            return res.send(`
+                <script>
+                    alert("Tài khoản của bạn đã tồn tại!");
+                    window.location.href="/register";
+                </script>
+            `);
+        }
+
+        const salt = bcrypt.genSaltSync(10);
+        const hash = bcrypt.hashSync(req.body.password, salt);
+
+        await Users.create({
+            username: req.body.username,
+            email: req.body.email,
+            password: hash,
+        })
+        return res.send(`
+                <script>
+                    alert("Đăng ký tài khoản thành công!");
+                    window.location.href="/login";
+                </script>
+            `);
+    } catch (error) {
+        console.log(error);
+        res.status(400).json({
+            code: "error",
+            message: "Register error!"
+        })
+    }
+}
+// End register
+
+// Login 
 export const loginSQLweb = async (req, res) => {
     res.render('login');
 };
 
+// export const loginSQLwebApi = async (req, res) => {
+//     try {
+
+//         const { email, password } = req.body;
+
+//         const query = `
+//         SELECT * FROM users 
+//         WHERE email = '${email}' 
+//         AND password = '${password}'
+//         `;
+
+//         const [rows] = await db.query(query);
+
+//         if (rows.length === 0) {
+//             return res.status(404).json({
+//                 code: "error",
+//                 message: "email or password is incorrect!"
+//             });
+//         }
+
+//         const data = rows[0];
+
+//         const token = jwt.sign({
+//             id: data.id,
+//             username: data.username,
+//         }, String(process.env.JWT));
+
+//         res.cookie('usersToken', token, {
+//             httpOnly: true,
+//             maxAge: 2 * 60 * 60 * 1000,
+//             secure: false,
+//             sameSite: "lax",
+//         });
+
+//         res.redirect("/");
+
+//     } catch (error) {
+
+//         console.log(error);
+
+//         res.status(400).json({
+//             code: "error",
+//             message: "bad request"
+//         });
+
+//     }
+// };
+
 export const loginSQLwebApi = async (req, res) => {
     try {
 
-        const { email, password } = req.body;
-
-        const query = `
-        SELECT * FROM users 
-        WHERE email = '${email}' 
-        AND password = '${password}'
-        `;
-
-        const [rows] = await db.query(query);
-
-        if (rows.length === 0) {
-            return res.status(404).json({
-                code: "error",
-                message: "email or password is incorrect!"
-            });
+        const rawData = await Users.findOne({
+            where: {
+                email: req.body.email,
+            }
+        });
+        if (!rawData) {
+            return res.send(`
+                <script>
+                    alert("Tài khoản hoặc mật khẩu của bạn không đúng!");
+                    window.location.href="/login";
+                </script>
+            `);
         }
 
-        const data = rows[0];
+        const checkPassword = bcrypt.compareSync(req.body.password, rawData.dataValues.password);
+
+        if (!checkPassword) {
+            return res.send(`
+                <script>
+                    alert("Tài khoản hoặc mật khẩu của bạn không đúng!");
+                    window.location.href="/login";
+                </script>
+            `);
+
+        }
+        const data = rawData.dataValues;
 
         const token = jwt.sign({
             id: data.id,
@@ -201,7 +307,12 @@ export const loginSQLwebApi = async (req, res) => {
             sameSite: "lax",
         });
 
-        res.redirect("/");
+        return res.send(`
+                <script>
+                    alert("Đăng nhập thành công!");
+                    window.location.href="/";
+                </script>
+            `);
 
     } catch (error) {
 
@@ -214,6 +325,8 @@ export const loginSQLwebApi = async (req, res) => {
 
     }
 };
+// END Login
+
 
 export const logout = async (req, res) => {
     res.clearCookie('usersToken');

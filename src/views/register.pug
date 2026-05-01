@@ -3,9 +3,13 @@ extends layouts/main
 block content
   .login-container
     .login-box
-      h2.login Login
+      h2.login Register
 
-      form(action="/login" method="POST")
+      form(action="/register" method="POST")
+        .form-group
+          label username
+          input(type="text" name="username" placeholder="Enter your email" required)
+
         .form-group
           label Email
           input(type="text" name="email" placeholder="Enter your email" required)
@@ -14,8 +18,8 @@ block content
           label Password
           input(type="password" name="password" placeholder="Enter your password" required)
 
-        button.btn(type="submit") Login
+        button.btn(type="submit") Register
 
       p.footer
-        | Don't have an account? 
-        a(href="/register") Register
+        | Are you have account ? 
+        a(href="/login") Login

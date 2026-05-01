@@ -68,14 +68,14 @@ export const addProduct = async (req, res) => {
 export const webProduct = async (req, res) => {
     try {
         const token = req.cookies.usersToken;
-
         if (token) {
-            let query = `SELECT * FROM products LIMIT 8 OFFSET 0`
+            let query = `SELECT * FROM products`
             let query2 = `SELECT * FROM products`
             let query3 = `SELECT * FROM products LIMIT 4 OFFSET 4`
             if (req.query.search) {
-                query += ` WHERE productName LIKE '${req.query.search}'`
+                query += ` WHERE productName LIKE '%${req.query.search}%'`
             }
+            query += " LIMIT 8 OFFSET 0"
             const [rows] = await db.query(query);
             const [rows2] = await db.query(query2);
             const [rows3] = await db.query(query3);
@@ -87,12 +87,13 @@ export const webProduct = async (req, res) => {
                 search: req.query.search
             })
         } else {
-            let query = `SELECT * FROM products LIMIT 8 OFFSET 0`
+            let query = `SELECT * FROM products`
             let query2 = `SELECT * FROM products`
             let query3 = `SELECT * FROM products LIMIT 4 OFFSET 4`
             if (req.query.search) {
                 query += ` WHERE productName LIKE '${req.query.search}'`
             }
+            query += " LIMIT 8 OFFSET 0"
             const [rows] = await db.query(query);
             const [rows2] = await db.query(query2);
             const [rows3] = await db.query(query3);
@@ -110,4 +111,18 @@ export const webProduct = async (req, res) => {
             message: "server error"
         })
     }
+}
+
+export const productPage = async (req, res) => {
+    let query = `SELECT * FROM products`
+    const search = req.query.search;
+    if(search) {
+        query += ` where productName LIKE '%${search}%'`
+    }
+    const [rows] = await db.query(query);
+    res.render("product", {
+        products: rows,
+        user: req.cookies.usersToken,
+        search: req.query.search
+    })
 }

@@ -4,6 +4,7 @@ import clientRoute from './routes/index.route.js';
 import webRoute from "./routes/web.route.js";
 import { connectDb } from './configs/database.config.js';
 import cookieParser from 'cookie-parser';
+import { connectDatabase } from './configs/databaseORM.config.js';
 
 dotenv.config();
 
@@ -22,8 +23,10 @@ app.use(cookieParser());
 app.set("view engine", "pug");
 app.set("views", "./src/views");
 
-// connect database
+// Database not useing ORM
 connectDb();
+//Database using ORM 
+connectDatabase();
 
 // routes
 app.use('/api/client', clientRoute);

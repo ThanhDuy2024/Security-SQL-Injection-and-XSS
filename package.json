@@ -21,8 +21,9 @@
     "jsonwebtoken": "^9.0.3",
     "multer": "^2.1.1",
     "multer-storage-cloudinary": "^4.0.0",
-    "mysql2": "^3.19.1",
-    "pug": "^3.0.4"
+    "mysql2": "^3.22.3",
+    "pug": "^3.0.4",
+    "sequelize": "^6.37.8"
   },
   "devDependencies": {
     "nodemon": "^3.1.14"

@@ -10,13 +10,13 @@ html
         div.header_left
           a(href="/").logo My E-commerce
           .search 
-            form(action="/" method="GET")
+            form(action="/product" method="GET")
               div
                 input(type="text" name="search" placeholder="Search")
 
           
         div.header_middle
-          .title Products
+          a(class="title" href="/product") Products
           .title Category
           div.title.about About us
           div.title.contact Contact

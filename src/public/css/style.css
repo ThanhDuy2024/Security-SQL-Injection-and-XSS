@@ -94,6 +94,7 @@
     font-size: 16px;
     font-weight: 700;
     cursor: pointer;
+    color: black;
 }
 
 .header .header_middle .title:hover {
@@ -279,6 +280,7 @@ a {
 
 .login-box h2 {
     margin-bottom: 20px;
+    font-weight: 700;
 }
 
 .form-group {
@@ -309,7 +311,7 @@ a {
 .btn {
     width: 100%;
     padding: 12px;
-    background: #6c63ff;
+    background: #80b501;
     border: none;
     color: white;
     font-size: 16px;
@@ -319,7 +321,7 @@ a {
 }
 
 .btn:hover {
-    background: #574fd6;
+    background: #34eec9;
 }
 
 .footer {
@@ -327,7 +329,7 @@ a {
 }
 
 .footer a {
-    color: #6c63ff;
+    color: #0c2f28;
     text-decoration: none;
     font-weight: bold;
 }
