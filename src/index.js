@@ -5,7 +5,8 @@ import webRoute from "./routes/web.route.js";
 import { connectDb } from './configs/database.config.js';
 import cookieParser from 'cookie-parser';
 import { connectDatabase } from './configs/databaseORM.config.js';
-
+import chalk, { Chalk } from "chalk";
+export const forceColor = new Chalk({ level: 3 }); 
 dotenv.config();
 
 const app = express();

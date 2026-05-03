@@ -1,4 +1,7 @@
+import { Op } from "sequelize";
 import { db } from "../configs/database.config.js";
+import { Products } from "../models/Product.model.js";
+import { forceColor } from "../index.js";
 
 export const getProduct = async (req, res) => {
     try {
@@ -113,16 +116,54 @@ export const webProduct = async (req, res) => {
     }
 }
 
+//Product injection
+
 export const productPage = async (req, res) => {
-    let query = `SELECT * FROM products`
-    const search = req.query.search;
-    if(search) {
-        query += ` where productName LIKE '%${search}%'`
+    try {
+        let query = `SELECT image, productName, price FROM products`
+        const search = req.query.search;
+        if (search) {
+            query += ` 
+            where productName LIKE '%${search}%'`
+        }
+        query += ' order by updated_at desc'
+        console.log(forceColor.blue(`Query product: ${query}`))
+        const [rows] = await db.query(query);
+        res.render("product", {
+            products: rows,
+            user: req.cookies.usersToken,
+            search: req.query.search
+        })
+    } catch (error) {
+        console.log(error);
+        res.redirect("/product")
     }
-    const [rows] = await db.query(query);
-    res.render("product", {
-        products: rows,
-        user: req.cookies.usersToken,
-        search: req.query.search
-    })
 }
+
+// export const productPage = async (req, res) => {
+//     try {
+//         const query = {
+//             nest: true,
+//             where: {},
+//             order: [
+//                 ['updated_at', 'desc']
+//             ]
+//         }
+
+//         if(req.query.search) {
+//             query.where.productName = {
+//                 [Op.like]: `%${req.query.search}%`
+//             }
+//         }
+//         const data = await Products.findAll(query);
+
+//         res.render("product", {
+//             products: data,
+//             user: req.cookies.usersToken,
+//             search: req.query.search
+//         })
+//     } catch (error) {
+//         console.log(error);
+//         res.redirect("/product")
+//     }
+// }

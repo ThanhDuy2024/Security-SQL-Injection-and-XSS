@@ -145,6 +145,20 @@
     margin-right: 10px;
     padding: 16px;
     border-radius: 10px;
+    cursor: pointer;
+}
+
+.header .menu .button .profile{
+    background-color: #0061f2;
+    margin-right: 10px;
+    padding: 16px;
+    border-radius: 10px;
+    color: white;
+    cursor: pointer;
+}
+
+.header .menu .button .profile a{
+    color: white;
 }
 
 .header .menu .button .btn.logout {
