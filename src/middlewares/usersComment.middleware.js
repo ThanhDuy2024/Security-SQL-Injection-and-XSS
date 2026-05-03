@@ -1,5 +1,5 @@
 import jwt from 'jsonwebtoken'
-export const usersMiddleware = async (req, res, next) => {
+export const usersCommentsMiddleware = async (req, res, next) => {
     try {
         const token = req.cookies.usersToken;
         const verify = jwt.verify(token, process.env.JWT);
@@ -16,6 +16,11 @@ export const usersMiddleware = async (req, res, next) => {
         next();
     } catch (error) {
         console.log(error);
-        res.redirect("/");
+        res.send(`
+                <script>
+                    alert("Bạn cần đăng nhập để dùng chức năng này!");
+                    window.location.href="/product/${req.params.id}";
+                </script>
+            `)
     }
 }

@@ -1,6 +1,10 @@
 extends layouts/main
 
 block content
+  if search 
+    h2.search
+      | Từ khóa sản phẩm: 
+      span !{search}
   div.product
     each product in products
       include components/product

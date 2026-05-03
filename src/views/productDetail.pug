@@ -1,0 +1,59 @@
+extends layouts/main
+
+block content
+  .product-detail
+
+    .product-container
+      .left
+        img(
+          src=product.image,
+          alt=product.productName
+        )
+
+      .right
+        h1= product.productName
+
+        p
+          strong Status:
+          |  #{product.status}
+
+        p
+          strong Price:
+          |  #{product.price} $
+
+        p
+          strong Quantity:
+          |  #{product.quantity}
+
+        if product.status === "available"
+          .status.available In Stock
+        else
+          .status.unavailable Out of Stock
+
+        button.buy Buy Now
+        button.cart Add to Cart
+
+    // 🧾 COMMENT SECTION
+    .comment-section
+      h2 Comments
+
+      // FORM COMMENT
+      form.comment-form(action=`/product/${product.id}/comment`, method="POST")
+        textarea(
+          name="content",
+          placeholder="Write your comment...",
+          required
+        )
+        button(type="submit") Post Comment
+
+      // LIST COMMENTS
+    .comment-list
+        if comments && comments.length > 0
+            each c in comments
+                .comment-item
+                    .comment-meta
+                        strong= `User: ${c.email || "Anonymous"}`
+                    .comment-content !{c.content}
+                    small.time= c.created_at
+        else
+            p.no-comment No comments yet.

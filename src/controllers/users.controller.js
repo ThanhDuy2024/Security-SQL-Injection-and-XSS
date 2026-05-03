@@ -249,7 +249,7 @@ export const loginSQLwebApi = async (req, res) => {
         }, String(process.env.JWT));
 
         res.cookie('usersToken', token, {
-            httpOnly: true,
+            // httpOnly: true,
             maxAge: 2 * 60 * 60 * 1000,
             secure: false,
             sameSite: "lax",

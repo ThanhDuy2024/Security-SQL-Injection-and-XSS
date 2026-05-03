@@ -9,23 +9,27 @@ html
       .header
         div.header_left
           a(href="/").logo My E-commerce
+
           .search 
             form(action="/product" method="GET")
               div
-                input(type="text" name="search" placeholder="Search")
+                input(
+                  type="text"
+                  name="search"
+                  placeholder="Search"
+                )
 
-          
         div.header_middle
           a(class="title" href="/product") Products
           .title Category
           div.title.about About us
           div.title.contact Contact
-        
 
         .menu
           .button 
             .btn 
               a(href="/cart") Cart
+
           if !user
             .button
               .btn
@@ -38,4 +42,5 @@ html
                 a(href="/profile") Profile
               .btn.logout
                 a(href="/logout").logout Logout
+
       block content

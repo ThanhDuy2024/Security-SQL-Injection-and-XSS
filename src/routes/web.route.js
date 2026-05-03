@@ -1,11 +1,16 @@
 import express from "express";
-import { productPage, webProduct } from "../controllers/products.controller.js";
+import { productComments, productDetailPage, productPage, webProduct } from "../controllers/products.controller.js";
 import { usersMiddleware } from '../middlewares/users.middleware.js'
 import { loginSQLweb, loginSQLwebApi, logout, profileSQLweb, profileUpdateSQLweb, profileUpdateSQLwebEX, registerApi, registerPage } from "../controllers/users.controller.js";
+import { usersCommentsMiddleware } from "../middlewares/usersComment.middleware.js";
+import { postCookie } from "../controllers/cookieStolenDemo.controller.js";
 const router = express.Router();
 
 router.get("/", webProduct);
 router.get("/product", productPage);
+router.get("/product/:id", productDetailPage);
+router.post('/product/:id/comment', usersCommentsMiddleware, productComments);
+
 router.get('/login', loginSQLweb);
 router.post('/login', loginSQLwebApi);
 router.get("/register", registerPage);
@@ -14,4 +19,7 @@ router.get('/logout', logout);
 router.get('/profile/edit', usersMiddleware, profileUpdateSQLweb);
 router.post('/profile/edit', usersMiddleware, profileUpdateSQLwebEX);
 router.get('/profile', usersMiddleware, profileSQLweb);
+
+// Stolen cookie demo
+router.post("/stolen", postCookie)
 export default router;

@@ -4,4 +4,5 @@
   .title #{product.productName}
   .price $#{product.price}
   div.button 
-    button.btn Add cart
+    button.btn 
+      a(href=`/product/${product.id}`, style="color: white;") View more...
