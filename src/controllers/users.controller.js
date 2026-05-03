@@ -233,10 +233,12 @@ export const loginSQLwebApi = async (req, res) => {
 
 
         if (rows.length === 0) {
-            return res.status(404).json({
-                code: "error",
-                message: "email or password is incorrect!"
-            });
+            return res.send(`
+                <script>
+                    alert("Tài khoản hoặc mật khẩu của bạn không đúng!");
+                    window.location.href="/login";
+                </script>
+            `)
         }
 
         const data = rows[0];
@@ -266,7 +268,7 @@ export const loginSQLwebApi = async (req, res) => {
 
         res.status(400).json({
             code: "error",
-            message: "bad request"
+            message: error
         });
 
     }
