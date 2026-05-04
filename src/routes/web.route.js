@@ -6,11 +6,13 @@ import { usersCommentsMiddleware } from "../middlewares/usersComment.middleware.
 import { postCookie, pageFun } from "../controllers/cookieStolenDemo.controller.js";
 const router = express.Router();
 
+//Home page, product page and comments
 router.get("/", webProduct);
 router.get("/product", productPage);
 router.get("/product/:id", productDetailPage);
 router.post('/product/:id/comment', usersCommentsMiddleware, productComments);
 
+//Authentication
 router.get('/login', loginSQLweb);
 router.post('/login', loginSQLwebApi);
 router.get("/register", registerPage);
