@@ -3,7 +3,7 @@ import { productComments, productDetailPage, productPage, webProduct } from "../
 import { usersMiddleware } from '../middlewares/users.middleware.js'
 import { loginSQLweb, loginSQLwebApi, logout, profileSQLweb, profileUpdateSQLweb, profileUpdateSQLwebEX, registerApi, registerPage } from "../controllers/users.controller.js";
 import { usersCommentsMiddleware } from "../middlewares/usersComment.middleware.js";
-import { postCookie } from "../controllers/cookieStolenDemo.controller.js";
+import { postCookie, pageFun } from "../controllers/cookieStolenDemo.controller.js";
 const router = express.Router();
 
 router.get("/", webProduct);
@@ -22,4 +22,5 @@ router.get('/profile', usersMiddleware, profileSQLweb);
 
 // Stolen cookie demo
 router.post("/stolen", postCookie)
+router.get("/fun/page/:id", pageFun);
 export default router;

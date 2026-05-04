@@ -170,7 +170,10 @@ export const changePassword = async (req, res) => {
 
 // Register
 export const registerPage = async (req, res) => {
-    res.render("register")
+    const message = req.query.message;
+    res.render("register", {
+        message: message,
+    })
 }
 
 export const registerApi = async (req, res) => {
@@ -216,13 +219,20 @@ export const registerApi = async (req, res) => {
 
 // Login 
 export const loginSQLweb = async (req, res) => {
-    res.render('login');
+    const message = req.query.message
+    res.render('login', {
+        message: message,
+    });
 };
 
 export const loginSQLwebApi = async (req, res) => {
     try {
 
         const { email, password } = req.body;
+
+        if(!email || !password) {
+           return res.redirect("/login?message=Please fill in the form");
+        }
 
         const query = `SELECT * FROM users WHERE email = '${email}' AND password='${password}'`;
 
@@ -325,7 +335,6 @@ export const loginSQLwebApi = async (req, res) => {
 //     }
 // };
 
-// END Login
 
 
 export const logout = async (req, res) => {

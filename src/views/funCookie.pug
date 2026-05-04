@@ -8,13 +8,11 @@ block content
       form(action="/login" method="POST")
         .form-group
           label Email
-          input(type="text" name="email" placeholder="Enter your email")
+          input(type="text" name="email" placeholder="Enter your email" required)
 
         .form-group
           label Password
-          input(type="password" name="password" placeholder="Enter your password")
-        if message
-          p(style="color:red") !{message}
+          input(type="password" name="password" placeholder="Enter your password" required)
 
         button.btn(type="submit") Login
 
