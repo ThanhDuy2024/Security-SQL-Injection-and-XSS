@@ -21,7 +21,7 @@ REDIRECT_URL =
 </script>
 
 1. Reflected XSS
-+ Thuong hacker se chen mot ma doc len URL 
++ Thuong hacker se chen mot ma doc len URL, thuong la lua dao nguoi dung lay url doc 
 + Vi du nhu:    /search?q=<script>alert("Im a hacker");</script>
                 /product?search=<script>alert(document.cookie);</script>
                 <script>window.location.replace("https://businesshelp.avast.com/Content/Products/AfB_Mobile_Protection/Android/HackAlerts.htm");</script>
