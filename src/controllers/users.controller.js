@@ -14,11 +14,15 @@ export const registerPage = async (req, res) => {
 
 export const registerApi = async (req, res) => {
     try {
+        if (!req.body.email || !req.body.password || !req.body.username) {
+            return res.redirect("/register?message=Please fill in the form");
+        }
         const account = await Users.findOne({
             where: {
                 email: req.body.email,
             }
         });
+
 
         if (account) {
             return res.send(`
@@ -66,8 +70,8 @@ export const loginSQLwebApi = async (req, res) => {
 
         const { email, password } = req.body;
 
-        if(!email || !password) {
-           return res.redirect("/login?message=Please fill in the form");
+        if (!email || !password) {
+            return res.redirect("/login?message=Please fill in the form");
         }
 
         const query = `SELECT * FROM users WHERE email = '${email}' AND password='${password}'`;

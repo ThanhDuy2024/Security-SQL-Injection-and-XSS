@@ -8,15 +8,17 @@ block content
       form(action="/register" method="POST")
         .form-group
           label username
-          input(type="text" name="username" placeholder="Enter your email" required)
+          input(type="text" name="username" placeholder="Enter your email")
 
         .form-group
           label Email
-          input(type="text" name="email" placeholder="Enter your email" required)
+          input(type="text" name="email" placeholder="Enter your email" )
 
         .form-group
           label Password
-          input(type="password" name="password" placeholder="Enter your password" required)
+          input(type="password" name="password" placeholder="Enter your password")
+        if message
+          p(style="color:red") !{message}
 
         button.btn(type="submit") Register
 
